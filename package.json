@@ -1,0 +1,14 @@
+{
+  "name": "sidewalk-iced-tea-v2",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/unit.test.mjs",
+    "smoke": "node test/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}

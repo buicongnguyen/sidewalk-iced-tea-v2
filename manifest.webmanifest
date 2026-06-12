@@ -1,0 +1,26 @@
+{
+  "name": "Trà Đá Vỉa Hè V2",
+  "short_name": "Trà Đá V2",
+  "description": "Quán trà đá vỉa hè — phiên bản 2 với pha chế, bưng trà và phố xá sống động.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#d98756",
+  "theme_color": "#c75b4a",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "./public/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./public/icons/app-icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
