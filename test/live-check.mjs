@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1280, height: 820 } });
+const errors = [];
+page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
+page.on("pageerror", e => errors.push(String(e)));
+await page.goto("https://buicongnguyen.github.io/sidewalk-iced-tea-v2/", { waitUntil: "networkidle" });
+await page.waitForSelector("#title-overlay", { state: "visible" });
+await page.click("#start-button");
+await page.waitForFunction(() => window.__game.getSnapshot().mode === "playing");
+await page.waitForFunction(() => window.__game.getSnapshot().customers.length > 0, null, { timeout: 20000 });
+const sw = await page.evaluate(async () => { const reg = await navigator.serviceWorker.ready; return reg.scope; });
+const snap = await page.evaluate(() => { const s = window.__game.getSnapshot(); return { mode: s.mode, customers: s.customers.length, day: s.day }; });
+await page.screenshot({ path: "test/shot-live.png" });
+console.log(JSON.stringify({ ...snap, swScope: sw, consoleErrors: errors }));
+await browser.close();
